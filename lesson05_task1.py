@@ -1,40 +1,44 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.webdriver.chrome.service import Service
-from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.chrome.options import Options
+
 import time
 
+
 def main():
-    # Настройка драйвера Chrome
-    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
-    
+    chrome_options = Options()
+    chrome_options.add_argument("--no-sandbox")
+    chrome_options.add_argument("--disable-dev-shm-usage")
+
+    driver = webdriver.Chrome(options=chrome_options)
+
     try:
-        # Переход на страницу
         driver.get("http://uitestingplayground.com/classattr")
-        
-        # Ожидание загрузки страницы
-        time.sleep(2)
-        
-        # Поиск и клик по синей кнопке с классом 'btn-primary'
-        blue_button = driver.find_element(By.CSS_SELECTOR, "button.btn-primary")
+
+        wait = WebDriverWait(driver, 10)
+        blue_button = wait.until(
+            EC.element_to_be_clickable((By.CSS_SELECTOR, "button.btn-primary"))
+        )
         blue_button.click()
-        
-        # Обработка алерта (если появится)
+
         try:
+            WebDriverWait(driver, 3).until(EC.alert_is_present())
             alert = driver.switch_to.alert
             alert.accept()
-        except:
+        except Exception:
             pass
-            
+
         print("Упражнение 1 выполнено успешно!")
-        
+
     except Exception as e:
         print(f"Произошла ошибка: {e}")
-        
+
     finally:
-        # Закрытие браузера
+        time.sleep(2)
         driver.quit()
+
 
 if __name__ == "__main__":
     main()
-    
