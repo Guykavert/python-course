@@ -1,0 +1,14 @@
+[33mcommit 0799c4283ff63d954776f66ad2570f8213375730[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mlesson-05[m[33m, [m[1;31morigin/lesson5-correct[m[33m, [m[1;31morigin/lesson-05[m[33m, [m[1;32mlesson5-correct[m[33m)[m
+Author: Guykavert <guykavert@mail.ru>
+Date:   Wed Oct 8 16:32:49 2025 +0300
+
+    feat: complete lesson 5 - Selenium WebDriver automation
+    
+    - Task 1: Click button with CSS class (Chrome)
+    - Task 2: Click button without static ID (Chrome)
+    - Task 3: Input field manipulation (Firefox)
+    - Task 4: Login form automation (Firefox)
+    - All scripts tested and PEP8 compliant
+    - Added completion report
+
+lesson05_task1.py
